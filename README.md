@@ -8,7 +8,7 @@
   Gatsby Starter Mix
 </h1>
 
-A simple theme for Gatsby. Modify on https://github.com/gatsbyjs/gatsby-starter-blog
+A simple theme for Gatsby. Modify on https://github.com/gatsbyjs/gatsby-starter-blog and inspired by https://github.com/niklasmtj/gatsby-starter-julia
 
 ## 🚀 Quick start
 

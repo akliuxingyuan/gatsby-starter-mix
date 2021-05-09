@@ -1,15 +1,12 @@
 module.exports = {
   siteMetadata: {
-    title: `Gatsby Starter Blog`,
+    title: `akliuxingyuan`,
     author: {
-      name: `Kyle Mathews`,
-      summary: `who lives and works in San Francisco building useful things.`,
+      name: `akliuxingyuan`,
+      summary: `时人不识凌云木，直待凌云始道高`,
     },
-    description: `A starter blog demonstrating what Gatsby can do.`,
-    siteUrl: `https://gatsbystarterblogsource.gatsbyjs.io/`,
-    social: {
-      twitter: `kylemathews`,
-    },
+    description: `Blog Matters`,
+    siteUrl: `https://github.com/akliuxingyuan`,
   },
   plugins: [
     `gatsby-plugin-image`,

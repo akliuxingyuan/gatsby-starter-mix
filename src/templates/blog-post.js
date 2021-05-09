@@ -1,17 +1,19 @@
 import * as React from "react"
 import { Link, graphql } from "gatsby"
 
-import Bio from "../components/bio"
+import MarkerHeader from "../components/MarkerHeader"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 
 const BlogPostTemplate = ({ data, location }) => {
   const post = data.markdownRemark
   const siteTitle = data.site.siteMetadata?.title || `Title`
+  const AuthorName = data.site.siteMetadata.author.name
+  const siteUrl = data.site.siteMetadata.siteUrl
   const { previous, next } = data
 
   return (
-    <Layout location={location} title={siteTitle}>
+    <Layout location={location} title={siteTitle} author={AuthorName} siteUrl={siteUrl}>
       <SEO
         title={post.frontmatter.title}
         description={post.frontmatter.description || post.excerpt}
@@ -22,8 +24,26 @@ const BlogPostTemplate = ({ data, location }) => {
         itemType="http://schema.org/Article"
       >
         <header>
-          <h1 itemProp="headline">{post.frontmatter.title}</h1>
-          <p>{post.frontmatter.date}</p>
+          <MarkerHeader itemProp="headline">
+            {post.frontmatter.title}
+          </MarkerHeader>
+          <div className="date-with-tag">
+            <span style={{ paddingRight: "10px" }}>{post.frontmatter.date}</span>
+            {post.frontmatter.tags ? (
+              <React.Fragment>
+                {post.frontmatter.tags.map((tag, index) => (
+                  <Link
+                    key={tag}
+                    to={`/tag/${tag}`}
+                    className="tag"
+                  >
+                    {`#`}{tag}
+                    {index + 1 === post.frontmatter.tags.length ? null : ' '}
+                  </Link>
+                ))}
+              </React.Fragment>
+            ) : null}
+          </div>
         </header>
         <section
           dangerouslySetInnerHTML={{ __html: post.html }}
@@ -31,7 +51,7 @@ const BlogPostTemplate = ({ data, location }) => {
         />
         <hr />
         <footer>
-          <Bio />
+          <br />
         </footer>
       </article>
       <nav className="blog-post-nav">
@@ -47,14 +67,14 @@ const BlogPostTemplate = ({ data, location }) => {
           <li>
             {previous && (
               <Link to={previous.fields.slug} rel="prev">
-                ← {previous.frontmatter.title}
+                « {previous.frontmatter.title}
               </Link>
             )}
           </li>
           <li>
             {next && (
               <Link to={next.fields.slug} rel="next">
-                {next.frontmatter.title} →
+                {next.frontmatter.title} »
               </Link>
             )}
           </li>
@@ -75,6 +95,10 @@ export const pageQuery = graphql`
     site {
       siteMetadata {
         title
+        author {
+          name
+        }
+        siteUrl
       }
     }
     markdownRemark(id: { eq: $id }) {
@@ -85,6 +109,7 @@ export const pageQuery = graphql`
         title
         date(formatString: "MMMM DD, YYYY")
         description
+        tags
       }
     }
     previous: markdownRemark(id: { eq: $previousPostId }) {

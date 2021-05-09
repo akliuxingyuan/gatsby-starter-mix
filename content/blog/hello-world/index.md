@@ -1,7 +1,8 @@
 ---
 title: Hello World
-date: "2015-05-01T22:12:03.284Z"
+date: "2019-11-01 21:12:03"
 description: "Hello World"
+tags: ["Hello World", "MarkDown"]
 ---
 
 This is my first post on my new fake blog! How exciting!

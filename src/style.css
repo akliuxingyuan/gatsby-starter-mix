@@ -1,4 +1,5 @@
 /* CSS Custom Properties Definitions */
+@import "./css/typography.css";
 
 :root {
   --maxWidth-none: "none";
@@ -11,7 +12,7 @@
   --maxWidth-3xl: 48rem;
   --maxWidth-4xl: 56rem;
   --maxWidth-full: "100%";
-  --maxWidth-wrapper: var(--maxWidth-2xl);
+  --maxWidth-wrapper: var(--maxWidth-3xl);
   --spacing-px: "1px";
   --spacing-0: 0;
   --spacing-1: 0.25rem;
@@ -27,13 +28,12 @@
   --spacing-20: 5rem;
   --spacing-24: 6rem;
   --spacing-32: 8rem;
-  --fontFamily-sans: Montserrat, system-ui, -apple-system, BlinkMacSystemFont,
-    "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif,
-    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-  --fontFamily-serif: "Merriweather", "Georgia", Cambria, "Times New Roman",
-    Times, serif;
+  --fontFamily-sans: "Nunito SemiBold", "Kiwi Maru", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji", sans-serif;
+  --fontFamily-serif: RockWell, "Kiwi Maru";
   --font-body: var(--fontFamily-serif);
   --font-heading: var(--fontFamily-sans);
+  --font-code: "Cascadia Mono PL", "Kiwi Maru";
+  --font-tag: var(--fontFamily-sans);
   --fontWeight-normal: 400;
   --fontWeight-medium: 500;
   --fontWeight-semibold: 600;
@@ -46,20 +46,22 @@
   --lineHeight-normal: 1.5;
   --lineHeight-relaxed: 1.625;
   /* 1.200 Minor Third Type Scale */
-  --fontSize-0: 0.833rem;
-  --fontSize-1: 1rem;
-  --fontSize-2: 1.2rem;
-  --fontSize-3: 1.44rem;
-  --fontSize-4: 1.728rem;
-  --fontSize-5: 2.074rem;
-  --fontSize-6: 2.488rem;
-  --fontSize-7: 2.986rem;
-  --color-primary: #005b99;
+  --fontSize-0: 0.633rem;
+  --fontSize-1: 0.833rem;
+  --fontSize-2: 0.970rem;
+  --fontSize-body: 1.05rem;
+  --fontSize-3: 1.200rem;
+  --fontSize-4: 1.350rem;
+  --fontSize-5: 1.470rem;
+  --fontSize-6: 1.634rem;
+  --fontSize-globalheader: 2.700rem;
+  --color-primary: #338dcc;
   --color-text: #2e353f;
   --color-text-light: #4f5969;
   --color-heading: #1a202c;
   --color-heading-black: black;
   --color-accent: #d1dce5;
+  --color-vuegreen: #3eaf7c;
 }
 
 /* HTML elements */
@@ -79,12 +81,14 @@ html {
 
 body {
   font-family: var(--font-body);
-  font-size: var(--fontSize-1);
+  font-size: var(--fontSize-body);
   color: var(--color-text);
 }
 
 footer {
   padding: var(--spacing-6) var(--spacing-0);
+  display: flex;
+  justify-content: center;
 }
 
 hr {
@@ -113,7 +117,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-weight: var(--fontWeight-bold);
+  font-weight: var(--fontWeight-medium);
   color: var(--color-heading);
 }
 
@@ -121,6 +125,7 @@ h1 {
   font-weight: var(--fontWeight-black);
   font-size: var(--fontSize-6);
   color: var(--color-heading-black);
+  font-weight: var(--fontWeight-medium);
 }
 
 h2 {
@@ -155,6 +160,29 @@ h5 > a,
 h6 > a {
   text-decoration: none;
   color: inherit;
+}
+
+
+/* code */
+code[class*="language-"],
+pre[class*="language-"] {
+    font-family: var(--font-code);
+}
+
+
+.tag {
+  font-family: var(--font-tag);
+  color: var(--color-vuegreen);
+  display: inline;
+}
+
+.tag:hover {
+  text-decoration: underline;
+}
+
+.date-with-tag {
+  font-size: var(--fontSize-2);
+  margin-top: var(--spacing-3);
 }
 
 /* Prose */
@@ -231,11 +259,29 @@ table thead tr th {
 
 a {
   color: var(--color-primary);
+  text-decoration: none;
 }
 
 a:hover,
 a:focus {
-  text-decoration: none;
+  text-decoration: underline;
+}
+
+.underline-animated {
+  display: inline-block;
+}
+
+.underline-animated::after {
+  content: '';
+  width: 0px;
+  height: 0.1rem;
+  display: block;
+  background: black;
+  transition: 500ms;
+}
+
+.underline-animated:hover::after {
+  width: 98%;
 }
 
 /* Custom classes */
@@ -247,16 +293,26 @@ a:focus {
 }
 
 .global-wrapper[data-is-root-path="true"] .bio {
-  margin-bottom: var(--spacing-20);
+  margin-bottom: var(--spacing-10);
 }
 
 .global-header {
-  margin-bottom: var(--spacing-12);
+  /* margin-bottom: var(--spacing-1); */
+  font-family: "Kiwi Maru";
+
 }
 
 .main-heading {
-  font-size: var(--fontSize-7);
+  font-size: var(--fontSize-globalheader);
   margin: 0;
+  text-decoration: none;
+  line-height: var(--lineHeight-normal);
+  letter-spacing: 0;
+}
+
+.main-heading:hover,
+.main-heading:focus {
+  text-decoration: none;
 }
 
 .post-list-item {
@@ -280,15 +336,17 @@ a:focus {
 }
 
 .header-link-home {
-  font-weight: var(--fontWeight-bold);
-  font-family: var(--font-heading);
+  font-size: var(--fontSize-globalheader);
+  margin: 0;
   text-decoration: none;
-  font-size: var(--fontSize-2);
+  font-family: var(--font-heading);
+  color: var(--color-heading-black);
 }
 
 .bio {
   display: flex;
-  margin-bottom: var(--spacing-16);
+  margin-bottom: var(--spacing-10);
+  font-size: var(--fontSize-2);
 }
 
 .bio p {
@@ -302,8 +360,8 @@ a:focus {
   border-radius: 100%;
 }
 
-.blog-post header h1 {
-  margin: var(--spacing-0) var(--spacing-0) var(--spacing-4) var(--spacing-0);
+.blog-post header {
+  margin: var(--spacing-8) var(--spacing-0) var(--spacing-4) var(--spacing-0);
 }
 
 .blog-post header p {
