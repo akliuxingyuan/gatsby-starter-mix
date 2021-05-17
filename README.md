@@ -18,7 +18,7 @@ A simple theme for Gatsby. Modify on https://github.com/gatsbyjs/gatsby-starter-
 
     ```shell
     # create a new Gatsby site using the blog starter
-    gatsby new my-blog-starter https://github.com/akliuxingyuan/gatsby-starter-mix
+    gatsby new my-blog https://github.com/akliuxingyuan/gatsby-starter-mix
     ```
 
 1.  **Start developing.**
@@ -26,7 +26,7 @@ A simple theme for Gatsby. Modify on https://github.com/gatsbyjs/gatsby-starter-
     Navigate into your new site’s directory and start it up.
 
     ```shell
-    cd my-blog-starter/
+    cd my-blog/
     gatsby develop
     ```
 
@@ -36,7 +36,7 @@ A simple theme for Gatsby. Modify on https://github.com/gatsbyjs/gatsby-starter-
 
     _Note: You'll also see a second link: _`http://localhost:8000/___graphql`_. This is a tool you can use to experiment with querying your data. Learn more about using this tool in the [Gatsby tutorial](https://www.gatsbyjs.com/tutorial/part-five/#introducing-graphiql)._
 
-    Open the `my-blog-starter` directory in your code editor of choice and edit `src/pages/index.js`. Save your changes and the browser will update in real time!
+    Open the `my-blog` directory in your code editor of choice and edit `src/pages/index.js`. Save your changes and the browser will update in real time!
 
 ## 🧐 What's inside?
 
